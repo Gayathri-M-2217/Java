@@ -1,0 +1,30 @@
+import java.io.*;
+import java.util.*;
+
+public class SmartShopper{
+
+    public static void main(String[] args) {
+        Scanner scan=new Scanner(System.in);
+        int cost1=scan.nextInt();
+        int quantity1=scan.nextInt();
+        int cost2=scan.nextInt();
+        int quantity2=scan.nextInt();
+        int cost3=scan.nextInt();
+        int quantity3=scan.nextInt();
+        int budget=scan.nextInt();
+        float tax=0.1f;
+        float totalbe=cost1*quantity1+cost2*quantity2+cost3*quantity3;
+        float totalaf=totalbe*tax+totalbe;
+        System.out.printf("Total (Before Tax): %.2f",totalbe);
+        System.out.printf("\nTotal (After Tax): %.2f\n",totalaf);
+        if(totalaf<=budget){
+            System.out.println("Within Budget");
+        }
+        else{
+            System.out.println("Over Budget");
+        }
+        
+        
+        
+    }
+}

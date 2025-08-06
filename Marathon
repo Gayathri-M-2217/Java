@@ -1,0 +1,15 @@
+import java.io.*;
+import java.util.*;
+
+public class Marathon {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner scan=new Scanner(System.in);
+        int age=scan.nextInt();
+        int fitness=scan.nextInt();
+        String result=((age>=18)&&(fitness>=60))?"Eligible for marathon":"Not eligible for marathon";
+        System.out.print(result);
+        scan.close();
+     }
+}

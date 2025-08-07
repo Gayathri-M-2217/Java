@@ -1,0 +1,23 @@
+import java.io.*;
+import java.util.*;
+
+public class {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner scan=new Scanner(System.in);
+        int n=scan.nextInt();
+        int rem=0;
+        int rev=0;
+         int cop=n;
+        while(n!=0){
+            rem=n%10;
+            rev=rev+rem;
+            n=n/10;
+        }
+        if(cop%rev==0)
+            System.out.println("Harshad Number");
+        else
+            System.out.println("Not Harshad Number");
+    }
+}

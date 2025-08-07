@@ -1,0 +1,23 @@
+import java.io.*;
+import java.util.*;
+
+public class Characterclassify{
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner scan=new Scanner(System.in);
+        char ch=scan.next().charAt(0);
+        boolean upper=((ch>='A')&&(ch<='Z'));
+        boolean lower=((ch>='a')&&(ch<='z'));
+        boolean digits=((ch>='0')&&(ch<='9'));
+        if(upper)
+            System.out.println("Uppercase Alphabet");
+        else if(lower)
+            System.out.println("Lowercase Alphabet");
+        else if(digits)
+            System.out.println("Digit");
+        else
+            System.out.println("Special Character");
+        scan.close();
+    }
+}

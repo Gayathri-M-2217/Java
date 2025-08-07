@@ -1,0 +1,33 @@
+import java.io.*;
+import java.util.*;
+
+public class Armstrong {
+
+    public static int count(int n){
+        int c=0;
+        while(n!=0){
+            c++;
+            n/=10;
+        }
+        return c;
+    }
+    public static int power(int n,int c){
+        int sum=0;
+        while(n!=0){
+            int last=n%10;
+            int exp=(int)Math.pow(last,c);
+            sum+=exp;
+            n/=10;
+        }
+        return sum;
+    }
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner scan=new Scanner(System.in);
+        int n=scan.nextInt();
+        int c=count(n);
+        int calc=power(n,c);
+        System.out.println(n==calc);
+        
+    }
+}

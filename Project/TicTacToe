@@ -1,0 +1,94 @@
+import java.util.*;
+
+public class TicTacToe {
+    private static final char EMPTY = ' ';
+    private static final int SIZE = 3;
+    private static final Scanner sc = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        char[][] board = new char[SIZE][SIZE];
+        for (char[] row : board) Arrays.fill(row, EMPTY);
+
+        char current = 'X';
+        while (true) {
+            printBoard(board);
+            int move = readMove(board, current);
+            placeMove(board, move, current);
+
+            if (isWinner(board, current)) {
+                printBoard(board);
+                System.out.println("Player " + current + " wins!");
+                break;
+            }
+            if (isDraw(board)) {
+                printBoard(board);
+                System.out.println("It's a draw!");
+                break;
+            }
+            current = (current == 'X') ? 'O' : 'X';
+        }
+    }
+
+    private static void printBoard(char[][] b) {
+        System.out.println();
+        for (int r = 0; r < SIZE; r++) {
+            for (int c = 0; c < SIZE; c++) {
+                char cell = b[r][c];
+                char toShow = (cell == EMPTY) ? (char) ('1' + (r * SIZE + c)) : cell;
+                System.out.print(" " + toShow + " ");
+                if (c < SIZE - 1) System.out.print("|");
+            }
+            System.out.println();
+            if (r < SIZE - 1) System.out.println("---+---+---");
+        }
+        System.out.println();
+    }
+
+    private static int readMove(char[][] board, char player) {
+        while (true) {
+            System.out.print("Player " + player + " - enter position (1-9): ");
+            String s = sc.nextLine().trim();
+            try {
+                int pos = Integer.parseInt(s);
+                if (pos < 1 || pos > 9) {
+                    System.out.println("Enter a number between 1 and 9.");
+                    continue;
+                }
+                int r = (pos - 1) / SIZE;
+                int c = (pos - 1) % SIZE;
+                if (board[r][c] != EMPTY) {
+                    System.out.println("That spot is taken. Try another.");
+                    continue;
+                }
+                return pos;
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Enter digits 1-9.");
+            }
+        }
+    }
+
+    private static void placeMove(char[][] board, int pos, char player) {
+        int r = (pos - 1) / SIZE;
+        int c = (pos - 1) % SIZE;
+        board[r][c] = player;
+    }
+
+    private static boolean isWinner(char[][] b, char p) {
+        // rows & cols
+        for (int i = 0; i < SIZE; i++) {
+            if (b[i][0] == p && b[i][1] == p && b[i][2] == p) return true;
+            if (b[0][i] == p && b[1][i] == p && b[2][i] == p) return true;
+        }
+        // diagonals
+        if (b[0][0] == p && b[1][1] == p && b[2][2] == p) return true;
+        if (b[0][2] == p && b[1][1] == p && b[2][0] == p) return true;
+        return false;
+    }
+
+    private static boolean isDraw(char[][] b) {
+        for (int r = 0; r < SIZE; r++)
+            for (int c = 0; c < SIZE; c++)
+                if (b[r][c] == EMPTY) return false;
+        return true;
+    }
+}
